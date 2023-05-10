@@ -1,0 +1,10 @@
+<table>
+  <tr>
+    <td>
+      <app-inventory (newItemAdded)="addToCart($event)"></app-inventory>
+    </td>
+    <td>
+      <app-cart [cartDisplay]="cartMap"></app-cart>
+    </td>
+  </tr>
+</table>

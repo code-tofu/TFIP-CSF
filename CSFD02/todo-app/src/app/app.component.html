@@ -1,0 +1,19 @@
+<h1>ToDoApp</h1>
+
+<table>
+  <tr>
+    <td>
+      <app-todoform
+        (obsProject)="addProject($event)"
+        [projectToEdit]="projectToEdit"
+      ></app-todoform>
+    </td>
+    <td>
+      <app-todolist
+        [projectList]="projectList"
+        (obsEdit)="editProject($event)"
+        (obsDelete)="delProject($event)"
+      ></app-todolist>
+    </td>
+  </tr>
+</table>

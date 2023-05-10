@@ -1,0 +1,52 @@
+<h2>To Do</h2>
+
+<h3>Project</h3>
+
+<form [formGroup]="projectForm" (ngSubmit)="submitProject()">
+  <p>Title:<input type="text" formControlName="projectTitle" /></p>
+  <p>Name:<input type="text" formControlName="userName" /></p>
+
+  <button type="submit">Save</button>
+  <button type="button" (click)="addTask()">Add Task</button>
+
+  <table *ngIf="taskArray.length > 0; else noTasks">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Priority</th>
+        <th>DueDate</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody formArrayName="tasks">
+      <tr
+        *ngFor="let f of taskArray.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <td>
+          <input type="text" formControlName="description" />
+        </td>
+        <td>
+          <!-- should try radio button -->
+          <select formControlName="priority">
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+          </select>
+        </td>
+        <td>
+          <input type="date" formControlName="dueDate" />
+        </td>
+        <td>
+          <button type="button" (click)="delTask(i)">X</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<button type="button" (click)="showEdit()">ShowSelectedEdit</button>
+<button type="button" (click)="clearEdit()">ClearSelectedEdit</button>
+
+<ng-template #noTasks>
+  <h3>Please add a task to this project</h3>
+</ng-template>

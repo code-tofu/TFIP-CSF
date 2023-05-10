@@ -1,0 +1,31 @@
+<h3>This component is inserted from Binder</h3>
+
+seems to call the class for each interpolation
+<p> This is an interpolated String : {{interString}} </p>
+<p> This is an interpoldated Number: {{interNumber}} </p>
+<p> This is from a method: The time is {{isBeforeThree()}}</p>
+
+<!-- Can't bind to 'after3' since it isn't a known property of 'p'. -->
+<!-- <p [after3] = "isAfter3"> This changes colour by property binding after 3pm</p> -->
+<button class="btn btn-warning" [disabled]="!isAfter3"> Disabled after After {{split - 12}}pm</button>
+<p><span>Inner Text says that it is </span><span [innerText]="isBeforeThree()"></span></p>
+
+<!-- onclick is a HTML event (click) is the TS version-->
+<button class="btn btn-success" (click)="onButton_hello()">Say Hello!</button>
+<input type="text" class="form-control" (input)="onFormInput($event)">
+
+
+<button type="button" [disabled]="canClick" (click)="sayMessage()">
+    Trigger alert message
+</button>
+
+<p [id]="sayHelloId" [style.color]="fontColor">
+    You can set my color in the component!
+</p>
+
+<p>My color is {{ fontColor }}</p>
+
+
+<p>Two Way Binding on NgModel:</p>
+<input type="text" class="form-control" [(ngModel)]="userString">
+<p>Binded: {{userString}}</p>

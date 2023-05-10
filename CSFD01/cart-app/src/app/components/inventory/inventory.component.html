@@ -1,0 +1,9 @@
+<h1>Our Inventory</h1>
+<app-item
+  *ngFor="let fruit of FRUITS; index as i"
+  [name]="fruit"
+  (newItemAdded)="transferToCart($event)"
+>
+</app-item>
+
+<app-cart></app-cart>

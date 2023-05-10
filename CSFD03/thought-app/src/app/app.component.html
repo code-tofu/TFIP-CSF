@@ -1,0 +1,28 @@
+<div class="main-container">
+
+
+    <h1>My Thoughts:</h1>
+    <form [formGroup]="thoughtForm" (submit)="processThought()">
+        <div class="grid-container">
+            <textarea type="text" placeholder="Type Here" class="grid-1 inputbox mat-body"
+                formControlName="thought"></textarea>
+            <!-- remember that [] is required on [formControl] only if the field is a member on the class -->
+            <button type="button" mat-raised-button color="warn" class="grid-2a" (click)="clearThought()">
+                Clear
+            </button>
+            <button mat-raised-button [disabled]="thoughtForm.invalid" color="accent" class="grid-2b" type="submit">
+                Share
+            </button>
+        </div>
+    </form>
+    <br />
+    <div *ngFor="let thought of thoughts; let i = index">
+        <mat-card>
+            <mat-card-header><mat-card-title>Thought #{{ i + 1 }}</mat-card-title></mat-card-header>
+            <mat-card-content>
+                <span>{{ thought }}</span>
+            </mat-card-content>
+        </mat-card>
+        <br />
+    </div>
+</div>

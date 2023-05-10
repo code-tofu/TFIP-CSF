@@ -1,0 +1,8 @@
+<h1>Your Cart</h1>
+
+<p *ngIf="cartDisplay.size === 0">You cart is empty</p>
+
+<div *ngFor="let item of cartDisplay | keyvalue">
+  <span>Fruit: {{ item.key }} Quantity: {{ item.value }}</span>
+  <img src="/assets/fruits/{{ item.key }}.png" />
+</div>
