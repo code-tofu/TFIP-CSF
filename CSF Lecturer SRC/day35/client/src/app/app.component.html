@@ -1,0 +1,53 @@
+<hr>
+
+<h2>GET /api/random?count=10</h2>
+
+<button type="button" (click)="getRandomNumbers()">Get Numbers</button>
+
+<ul>
+  <li *ngFor="let n of num$ | async">
+    {{ n  }}
+  </li>
+</ul>
+
+<hr>
+
+
+<h2>POST /api/random</h2>
+
+<form [formGroup]="form" (submit)="postWithJson()">
+  <table>
+    <tr>
+      <td>Min</td>
+      <td>
+        <input type="number" min="-100" max="100" size="10" formControlName="min">
+      </td>
+    </tr>
+    <tr>
+      <td>Max</td>
+      <td>
+        <input type="number" min="-100" max="100" size="10" formControlName="max">
+      </td>
+    </tr>
+    <tr>
+      <td>Count</td>
+      <td>
+        <input type="number" min="-100" max="100" size="10" value="5" formControlName="count">
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button type="submit">POST JSON</button>
+        <button type="button" (click)="postWithForm()">POST FORM</button>
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+<hr>
+
+<h1>Logger</h1>
+
+<app-logger></app-logger>

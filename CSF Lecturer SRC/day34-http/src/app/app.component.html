@@ -1,0 +1,22 @@
+
+<div *ngIf="resp$ | async as r else noImage">
+  <h2>Status: {{ r.status }}</h2>
+  <img [src]="r.message" width="300">
+</div>
+
+
+<div>
+  <button type="submit" (click)="getDogsAsObservable()">Get as Observable</button>
+</div>
+
+<div *ngIf="prom$ | async as img else noImage">
+  <img [src]="img" width="300">
+</div>
+
+<div>
+  <button type="submit" (click)="getDogsAsPromise()">Get as Promise</button>
+</div>
+
+<ng-template #noImage>
+  <img src="https://theperfectroundgolf.com/wp-content/uploads/2022/04/placeholder.png" width="300">
+</ng-template>

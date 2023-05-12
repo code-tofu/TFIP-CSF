@@ -1,0 +1,15 @@
+<h1>Universal Library</h1>
+
+<h3>Search for a book title:</h3>
+
+<input type="text" (keyup)="searchTitle($event)">
+
+<h3 *ngIf="!(searchString==='')">Results for "{{searchString}}"</h3>
+<div *ngFor="let title of searchResults$ | async, let i = index">
+    <p><span>{{i+1}} : </span><span>{{title}}</span></p>
+</div>
+
+<!-- 
+<div *ngFor="let title of searchResults, let i = index">
+    <p><span>{{i}}</span><span>{{title}}</span></p>
+</div> -->

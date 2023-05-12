@@ -1,0 +1,17 @@
+<h1>Joke Generator 2000:</h1>
+
+<!-- aysnc does the subscription -->
+<div *ngIf="joke$ | async as joke">
+    <p>{{joke.setup}}</p>
+    <p>{{joke.punchline}}</p>
+</div>
+
+
+
+<!-- <p *ngIf="punch$ | async as punchline">{{punchline}}</p> -->
+
+
+
+<button type="button" (click)="getJoke()">Tell Me a Joke</button>
+
+<div>{{setup}}</div>

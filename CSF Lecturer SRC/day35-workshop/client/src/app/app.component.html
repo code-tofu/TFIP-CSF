@@ -1,0 +1,19 @@
+<div class="center-it">
+  <h1>Book Search</h1>
+  <div>
+    <input type="text" size="30" placeholder="Type book title here"
+        #title (keydown)="keypressed(title.value)">
+  </div>
+  <div>
+    <div class="font-15em" >
+      <div *ngFor="let b of search$ | async">
+        <a href="http://localhost:8080/api/book/id/{{ b.bookID }}">
+          <code>{{ b.title }}</code>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
