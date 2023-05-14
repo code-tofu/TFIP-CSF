@@ -1,34 +1,21 @@
-<h1>Hero Selection:</h1>
-
-<h2>Selected Hero:</h2>
-<h2>{{heroStarter.name | uppercase}} Details</h2>
-<div><span>id: </span>{{heroStarter.id}}</div>
-<div><span>name: </span>{{heroStarter.name}}</div>
-<div>
-    <label for="name">Starter Hero name: </label>
-    <input id="name" [(ngModel)]="heroStarter.name" placeholder="name">
-</div>
-
-
-<!-- ngIf allows html to render without a selected hero by removing the elements that need to refer to a selected hero -->
-<div *ngIf="selectedHero">
-    <h2>{{selectedHero.name | uppercase}} Details</h2>
-    <div>id: {{selectedHero.id}}</div>
-    <div>
-        <label for="hero-name">Hero name: </label>
-        <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
-    </div>
-</div>
-
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
-
 <h2>My Heroes</h2>
 
+<div>
+  <label for="new-hero">Hero name: </label>
+  <input id="new-hero" #heroName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="add(heroName.value); heroName.value=''">
+    Add hero
+  </button>
+</div>
+
 <ul class="heroes">
-    <li *ngFor="let hero of heroes">
-        <button [class.selected]="hero === selectedHero" type="button" (click)="onSelect(hero)">
-            <span class="badge">{{hero.id}}</span>
-            <span class="name">{{hero.name}}</span>
-        </button>
-    </li>
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+    <button type="button" class="delete" title="delete hero"
+      (click)="delete(hero)">x</button>
+  </li>
 </ul>
