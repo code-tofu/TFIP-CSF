@@ -1,0 +1,79 @@
+<h2>Sign Up Form</h2>
+
+<form [formGroup]="mainform">
+
+    <!-- (ngSubmit)="submit()" -->
+    <!-- [formGroup]="todo"?? -->
+    <div formArrayName="signups">
+        <mat-card class="names-container" *ngFor="let entry of namesform.controls, let i=index" [formGroupName]="i">
+            <div>
+                <label>Name:</label>
+                <input matInput type="text" formControlName="name" style="width: 80%;" required>
+            </div>
+            <div style="text-align: right;">
+                <label>Age:</label>
+                <input matInput type="number" formControlName="age" style="width: 50px;" required>
+                <label style="margin-left: 5px;">Gender:</label>
+                <span style="margin-left: 5px;">
+                    <label for="M">M</label>
+                    <input type="radio" checked id="M" formControlName="gender" value="M">
+                </span>
+                <span style="margin-left: 5px;">
+                    <label for="F">F</label>
+                    <input type="radio" id="F" formControlName="gender" value="F">
+                </span>
+            </div>
+            <mat-card-footer class="card-footer">
+                <p class="error" *ngIf="entry.get('name')?.hasError('minlength')"> Please enter a name more than 3
+                    characters</p>
+                <p class="error" *ngIf="entry.get('age')?.hasError('min')">You must be above 18 to particpate</p>
+                <p class="error" *ngIf="entry.get('gender')?.hasError('min')">Please select a gender</p>
+                <p class="error" *ngIf="entry.get('name')?.hasError('isJohn')">No Johns Allowed!</p>
+                <button style="margin-right: 0;margin-left:auto" mat-flat-button color="primary" type="button"
+                    (click)="deleteName(i)">Delete</button>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+
+    <div>
+        <div>
+            <p class="error" *ngIf="namesform.invalid && namesform.dirty">Invalid Form, please check your entries.</p>
+            <p class="error" *ngIf="checkLength() && namesform.dirty">Please enter at least one name</p>
+
+        </div>
+        <h2 class="error" *ngIf="submittedStatus">Form Submitted!</h2>
+        <button mat-flat-button color="primary" type="button" style="margin-left: 5px;" (click)="addName()" *ngIf="!submittedStatus">Add A
+            Name</button>
+        <button mat-flat-button color="warn" type="submit" style="margin-left: 5px;" (click)="submit()"
+            [disabled]="mainform.invalid" *ngIf="!submittedStatus">Submit</button>
+        <button mat-flat-button color="accent" type="button" style="margin-left: 5px;" (click)="newForm()"
+        *ngIf="submittedStatus">Submit a New Form</button>
+
+    </div>
+</form>
+<!-- <form [formGroup]="mainform">
+    <div formArrayName="signups">
+        <mat-card *ngFor="let name of namesform.controls, let i=index" [formGroupName]="i">
+            <mat-card-header>
+                <span>Team Member {{i+1}}</span>
+                <button style="margin-right: 0;margin-left:auto" mat-raised-button type="button"
+                    (click)="deleteName(i)">Delete</button>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field appearance="outline">
+                    <mat-label>Name:</mat-label>
+                    <input matInput type="text" formControlName="name" required>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Age:</mat-label>
+                    <input matInput type="number" formControlName="age" required>
+                </mat-form-field>
+                <label>Gender:</label>
+                <mat-radio-group formControlName="gender">
+                    <mat-radio-button value="M">M</mat-radio-button>
+                    <mat-radio-button value="F">F</mat-radio-button>
+                </mat-radio-group>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</form> -->

@@ -1,0 +1,12 @@
+<mat-card (click)="selectSport(name.innerText)" >
+    <mat-card-header>
+        <!-- try using [ngStyle] -->
+        <mat-card-title #name><span [ngStyle]="{'font-style' : selected ? 'italic' : 'normal' }">{{sport.name}}</span></mat-card-title>
+        <!-- #name to select element for event binding selectSport -->
+    </mat-card-header>
+<mat-card-content>
+    <p><span>Slots:</span><span>{{sport.teamSize}}</span></p>
+    <p><span>Date:</span><span>{{sport.date}}</span></p>
+    <p><span>Location:</span><span>{{sport.location}}</span></p>
+</mat-card-content>
+</mat-card>

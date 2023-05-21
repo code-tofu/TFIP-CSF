@@ -1,0 +1,18 @@
+<h1>{{title}}</h1>
+
+<div class="container">
+    <div class="left-container">
+        <div *ngFor="let sports of sportsData">
+            <app-lister [class.selected]="selected === sports.name" [sport]="sports"
+                (selectedSport)="selectSport($event)" [selected]="selected === sports.name"></app-lister>
+            <!-- can take selected data from sports.name as well -->
+            <!-- selected in sub component vs selected in parent component -->
+        </div>
+    </div>
+
+    <div class="right-container">
+        <app-viewer></app-viewer>
+        <app-former></app-former>
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+.container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+}
+.left-container{
+    grid-column: 1/2;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5px;
+    row-gap:5px;
+}
+
+.right-container{
+    grid-column: 2/3;
+}
+
+h1{
+    text-align: center;
+}
+
+.selected{
+    /* background-color is not a property of app-lister? */
+    background-color: grey;
+    color: red;
+
+}
