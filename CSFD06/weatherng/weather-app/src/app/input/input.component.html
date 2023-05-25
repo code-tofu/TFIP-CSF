@@ -1,0 +1,6 @@
+<h2>Please Key In a City:</h2>
+
+<form [formGroup]="weatherForm">
+    <input type="text" formControlName="city">
+    <button type="button" (click)="getWeather()" [disabled]="weatherForm.invalid"> Weather Me </button>
+</form>

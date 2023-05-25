@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Successful</title>
+</head>
+
+<body>
+
+    <h1>Your Article has been Uploaded</h1>
+
+    <h2>Article ID</h2>
+    <p data-th-text="${id}"></p>
+
+    <h2>Title</h2>
+    <p data-th-text="${title}"></p>
+
+    <h2>Content</h2>
+    <p data-th-text="${content}"></p>
+
+    <h2>Image</h2>
+    <p><span>FileName:</span><span data-th-text="${filename}"></span></p>
+    <p><span>FileSize:</span><span data-th-text="${size}"></span></p>
+    <p><span>FileType:</span><span data-th-text="${contentType}"></span></p>
+
+</body>
+
+</html>

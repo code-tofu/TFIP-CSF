@@ -1,0 +1,19 @@
+<h2>The Weather in {{city}} is:</h2>
+
+<div *ngIf=" weather$ | async as w, else wError">
+    <h3>City: {{w.city}}</h3>
+    <h3>Weather: {{w.weather_main}}</h3>
+    <h3>Description: {{w.weather_desc}}</h3>
+    <h3>Temperature: {{w.temp}}</h3>
+    <h3>Feels Like: {{w.feels_like}}</h3>
+    <h3>Min Temperature: {{w.temp_min}}</h3>
+    <h3>Max Temperature: {{w.temp_max}}</h3>
+    <h3>Humidity: {{w.humidity}}</h3>
+</div>
+
+<ng-template #wError>
+    <h2>Please input a city:</h2>
+    <button type="button" [routerLink]="['/']">
+        Go Back
+    </button>
+</ng-template>

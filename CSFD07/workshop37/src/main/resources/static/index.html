@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Article</title>
+</head>
+
+<body>
+
+    <h1>Upload Article</h1>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <p><input type="text" name="title" placeholder="Title"></p>
+        <textarea name="content" rows="5" cols="40" placeholder="Article Text"></textarea>
+        <p><input type="file" name="imgFile" placeholder="Attach Photo" accept=".jpg"></p>
+        <button type="submit">Upload</button>
+    </form>
+
+</body>
+
+</html>

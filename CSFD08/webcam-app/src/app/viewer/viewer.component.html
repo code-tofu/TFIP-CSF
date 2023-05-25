@@ -1,0 +1,13 @@
+<div *ngIf="imageData"> <img id='base64image' [src]="imageData"> </div>
+<div *ngIf="!imageData">
+    <a [routerLink]="['/camera']">Take a Picture</a>
+</div>
+
+<div>
+    <button type="button" (click)="uploadFile('newphoto')">Upload Photo</button>
+</div>
+
+<textarea></textarea>
+<div *ngIf=" imageData">
+    <a [routerLink]="['/camera']">Take another Picture</a>
+</div>

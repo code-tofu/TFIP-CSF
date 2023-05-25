@@ -1,0 +1,4 @@
+<webcam [trigger]="triggerSubject" (imageCapture)="imageHandler($event)"></webcam>
+<div>
+    <button type="button" (click)="triggerPush()">SNAP!</button>
+</div>
