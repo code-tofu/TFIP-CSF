@@ -1,0 +1,30 @@
+mat-form-field{
+    width:100% !important;
+    margin:auto;
+ }
+ 
+ .container{
+    padding:20px;
+ }
+
+ .paddingLR10px{
+    padding-left: 10px;
+    padding-right: 10px;
+ }
+
+ .marginLR10px{
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+.accent{
+   color: #F44336;
+   font-weight: bold;
+}
+
+ 
+
+/* 
+ input[type="file"] {
+    display: none;
+} */

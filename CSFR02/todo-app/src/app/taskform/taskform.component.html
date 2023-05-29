@@ -1,0 +1,146 @@
+<div class="container">
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Task Details</mat-card-title>
+            <mat-card-subtitle>Add Section Details Here</mat-card-subtitle>
+            <span><mat-checkbox class="example-margin" [(ngModel)]="completed" (click)="completeTask()"></mat-checkbox>
+                <span class="accent" *ngIf="taskFmGrp.get('complete')?.value">Task Completed</span>
+        </span>
+        </mat-card-header>
+        <br>
+        <form [formGroup]="taskFmGrp" (submit)="saveTask()">
+            <fieldset [disabled]="taskFmGrp.get('complete')?.value">
+                <mat-card-content>
+
+
+
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Task Name</mat-label>
+                            <!-- IMPT: don't forget your formControlNames -->
+                            <input matInput type="text" formControlName="name">
+                            <mat-hint
+                                *ngIf="taskFmGrp.get('name')?.hasError('required') && taskFmGrp.get('name')?.dirty">
+                                Please include a title for the task</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <!-- <p>
+        <mat-rad    io-group>
+            <mat-label>Priority</mat-label>
+            <mat-radio-button value="1">Low</mat-radio-button>
+            <mat-radio-button value="2">Medium</mat-radio-button>
+            <mat-radio-button value="3">High</mat-radio-button>
+        </mat-radio-group>
+    </p> -->
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Priority</mat-label>
+                            <mat-select formControlName="priority" [disabled]="taskFmGrp.get('complete')?.value">
+                                <mat-option value="1">Low</mat-option>
+                                <mat-option value="2">Medium</mat-option>
+                                <mat-option value="3">High</mat-option>
+                                <mat-hint
+                                    *ngIf="taskFmGrp.get('priority')?.hasError('required') && taskFmGrp.get('priority')?.dirty">
+                                    Please include a due date for the task</mat-hint>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Due Date (MM/DD/YYYY)</mat-label>
+                            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                            <!-- NOTE: for datetime have to use -->
+                            <input matInput [matDatepicker]="picker" formControlName="dueDate">
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-hint
+                                *ngIf="taskFmGrp.get('date')?.hasError('required') && taskFmGrp.get('date')?.dirty">
+                                Please include a due date for the task</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Description</mat-label>
+                            <textarea matInput rows="2" formControlName="description"></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field formArrayName="categories">
+                            <mat-label>Categories:</mat-label>
+                            <mat-chip-grid #chipGrid>
+                                <mat-chip-row *ngFor="let step of categoriesFmArr.controls; let i = index"
+                                    (removed)="removeCategory(i)" [editable]="true" (edited)="editCategory(i, $event)">
+                                    {{step.getRawValue()}}
+                                    <button matChipRemove><mat-icon>cancel</mat-icon></button>
+                                </mat-chip-row>
+                                <input p laceholder="New Category..." [matChipInputFor]="chipGrid"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    [matChipInputAddOnBlur]="addOnBlur"
+                                    (matChipInputTokenEnd)="addCategoryCtrl($event)" />
+                            </mat-chip-grid>
+                        </mat-form-field>
+                    </div>
+
+                    <h3>Steps:</h3>
+                    <div class="paddingLR10px">
+                        <div *ngIf="stepsFmArr.length > 0; else stepEmpty" formArrayName="steps">
+                            <div *ngFor="let step of stepsFmArr.controls; let i = index">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Step {{i+1}}:</mat-label>
+                                    <input matInput type="text" [formControlName]="i">
+                                    <button (click)="removeStep(i)" color="warn" matSuffix
+                                        mat-icon-button><mat-icon>close</mat-icon></button>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <p><button mat-stroked-button type="button" (click)="addStepCtrl()">Add Step</button></p>
+                    </div>
+
+
+
+                    <h3>Attachments:</h3>
+                    <div class="paddingLR10px">
+                        <div *ngIf="attachmentsArr.length > 0; else attachmentEmpty" formArrayName="attachments">
+                            <table mat-table style="width:100%">
+                                <tr>
+                                    <th style="width:10%">#</th>
+                                    <th style="width:40%">File Name:</th>
+                                    <th style="width:50%">File Size (Bytes):</th>
+                                </tr>
+                                <tr *ngFor="let attachment of attachmentsArr; let i = index">
+                                    <th>{{i+1}}.</th>
+                                    <td><span>{{attachment.name}}</span></td>
+                                    <td><span>{{attachment.size}}</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <app-fileuploader (newAttachment)="addAttachment($event)"></app-fileuploader>
+                </mat-card-content>
+            </fieldset>
+            <mat-card-actions align="end">
+                <p><button mat-flat-button type="submit" color="primary" [disabled]="taskFmGrp.invalid">Save
+                        Task</button></p>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>
+
+
+<ng-template #stepEmpty>
+    <h4>Add Task Steps</h4>
+</ng-template>
+
+<ng-template #attachmentEmpty>
+    <h4>No Attachments</h4>
+</ng-template>
+
+<!-- // complete: boolean;
+// steps: string[];
+// categories: string[];
+// attachments: File[];    -->
+
+<!-- <p><input type="file" id="file-upload"  [formControlName]="i" #uploadFile multiple></p> -->
