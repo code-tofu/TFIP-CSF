@@ -12,6 +12,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -29,7 +32,10 @@ const matModules: any[] = [
   MatSelectModule,
   MatChipsModule,
   MatToolbarModule,
-  MatListModule
+  MatListModule,
+  MatExpansionModule,
+  MatDividerModule,
+  MatTableModule
 ]
 
 

@@ -3,6 +3,22 @@ mat-form-field{
     margin:auto;
  }
 
- .container{
-    padding:20px;
+ mat-expansion-panel-header{
+    height:fit-content;
+    padding: 10px;
+ }
+
+ mat-expansion-panel{
+    height:fit-content;
+ }
+
+ .container-section{
+    width: 100%;
+    margin-bottom: 10px;
+    margin:auto;
+ }
+
+ tr{
+    padding-top: 5px;
+    padding-bottom: 5px;
  }

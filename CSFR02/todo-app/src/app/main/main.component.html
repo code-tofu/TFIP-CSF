@@ -1,6 +1,19 @@
 <div class="container">
     <h2>My Project</h2>
 
+    <h3 *ngIf="!(project.length>0)">No Sections in Project - Add a New Section</h3>
+
+    <div *ngFor="let section of project;let i=index">
+        <app-section [section]="section"></app-section>
+        <br>
+    </div>
+
+    <br>
+    <mat-form-field>
+        <mat-label>Add a Section Title</mat-label>
+        <input matInput placeholder="Section Title" [(ngModel)]="addname">
+    </mat-form-field>
+    <button mat-stroked-button type="button" (click)="addNewSection()" [disabled]="addname.trim().length<1" >Add New
+        Section</button>
 
 </div>
-

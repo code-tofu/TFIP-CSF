@@ -1,33 +1,39 @@
-<div class="container">
-    <mat-card>
-        <mat-card-header>
-            <mat-form-field>
-                <mat-label>Section Title</mat-label>
-                <input matInput placeholder="Section Title" [(ngModel)]="name">
-              </mat-form-field>
-        </mat-card-header>
-        <mat-card-content>
-            <table mat-table style="width:100%" >
-                <tr>
-                    <th style="width:10%">#</th>
-                    <th style="width:60%">Name</th>
-                    <th style="width:30%">Due Date</th>
-                </tr>
-                <tr *ngFor="let task of taskList;let i= index">
-                    <td>{{i+1}}</td>
-                    <td>{{task?.name}}</td>
-                    <td>{{task?.dueDate | date:'shortDate'}}</td>
-                </tr>
-            </table>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-stroked-button type="button" (click)="addNewTask()">Add New Task</button>
-        </mat-card-actions>
-    </mat-card>
+<div class="container-section">
+
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-panel-title>{{section.name}}</mat-panel-title>
+                        <mat-panel-description>Total {{section.taskList.length}} tasks</mat-panel-description>
+                    </mat-panel-title>
+                </mat-expansion-panel-header >
+
+                <table style="width:100%">
+                    <tr>
+                        <th style="width:10%">#</th>
+                        <th style="width:50%">Name</th>
+                        <th style="width:30%">Due Date</th>
+                        <th style="width:10%">Edit</th>
+                    </tr>
+                    <tr *ngFor="let task of section.taskList;let i= index">
+                        <td>{{i+1}}</td>
+                        <td>{{task?.name}}</td>
+                        <td>{{task?.dueDate | date:'shortDate'}}</td>
+                        <button mat-icon-button color="primary" style="text-align:center" [routerLink]="['/section',section.id]"[queryParams]="{taskid:i}"><mat-icon fontIcon="edit">
+                        </mat-icon></button>
+                        <!-- <mat-divider [inset]="true"></mat-divider>-->
+                    </tr>
+                </table>
+                <button mat-stroked-button type="button" (click)="addNewTask()">Add New Task</button>
+            </mat-expansion-panel>
+        </mat-accordion>
 </div>
 
-<div *ngIf="taskList.length >0">
+
+
+<!-- <div *ngIf="taskList.length >0">
     <div *ngFor="let task of taskList;let i = index">
-        <app-taskform [task]="task" (upsertTaskSub)="updateTaskList($event,i)"></app-taskform>
+        <app-taskform [task]="task" (upsertTaskSub)="updateTaskList($event,i)"><span>{{name}}</span></app-taskform>
     </div>
-</div>
+</div> -->
