@@ -125,7 +125,7 @@ export class TaskformComponent implements OnInit {
     // //SAVE TASK TO SERVICE SECTION USING SUBJECT
     // this.upsertTaskSub.next(newTask);
 
-    this.taskData.project[this.sectionId].taskList[this.taskId] = newTask;
+    this.taskData.upsertTask(this.sectionId,this.taskId,newTask);
     //RESET FORM
     this.taskFmGrp = this.createTaskForm(null);
     this.attachmentsArr = [];

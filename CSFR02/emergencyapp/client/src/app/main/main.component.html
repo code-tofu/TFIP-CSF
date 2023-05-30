@@ -1,0 +1,22 @@
+<div class="container-bg">
+    <h2>Tolong Please</h2>
+
+    <form [formGroup]="helpForm" (submit)="upload()">
+        <p><label>Name:</label>
+            <input class="width-100" type="text" formControlName="name">
+        </p>
+        <p><label>Question:</label>
+            <textarea class="width-100" rows="5" type="password" formControlName="question"></textarea>
+        </p>
+        <p><label>Attachment:</label>
+            <input type="file" formControlName="file" multiple #uploadFile>
+        </p>
+        <button type="submit" class="btn btn-primary" [disabled]="helpForm.invalid">Submit</button>
+    </form>
+    <br>
+    <button type="button" class="btn btn-dark" [routerLink]="['/']">Logout</button>
+
+
+
+
+</div>

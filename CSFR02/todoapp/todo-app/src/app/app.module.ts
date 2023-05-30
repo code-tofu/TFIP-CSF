@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileuploaderComponent } from './taskform/fileuploader/fileuploader.component';
 import { SectionComponent } from './section/section.component';
 import { MainComponent } from './main/main.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   //IMPT: remember that root path is ""and not "/"
@@ -33,7 +34,8 @@ const routes: Routes = [
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

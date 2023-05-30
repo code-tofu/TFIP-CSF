@@ -1,0 +1,9 @@
+.container-centre{
+    width:fit-content;
+    margin:auto;
+    padding-top: 10px;
+}
+
+.container-bg{
+    background-color: cadetblue;
+}
